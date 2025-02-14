@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../dist/out-tsc",
+    "module": "NodeNext",
+    "types": ["node", "express"]
+  },
+  "include": ["src/**/*.ts"],
+  "references": [
+    {
+      "path": "../shared-models/tsconfig.lib.json"
+    }
+  ]
+}
