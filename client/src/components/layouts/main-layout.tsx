@@ -6,7 +6,7 @@ function MainLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <div>{children}</div>
+      <div className="flex-1 max-h-screen">{children}</div>
     </SidebarProvider>
   );
 }

@@ -10,7 +10,6 @@ import {
   FormMessage,
 } from '../components/ui/form';
 import { Input } from '../components/ui/input';
-import { AuthApi } from '../api/auth';
 import { useAuth } from '../store/auth';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../hooks/use-toast';
@@ -27,15 +26,16 @@ function Login() {
 
   const onSubmit = async (data: FormBody) => {
     try {
-      // const response = await AuthApi.login(data);
-      // onLogin(response);
-      // toast({
-      //   title: 'Login success!',
-      // });
-      // navigate('/', {
-      //   replace: true,
-      // });
+      socket.connect();
       socket.emit('user:login', data.username);
+      onLogin({
+        id: data.username,
+        username: data.username,
+        isOnline: true,
+      });
+      navigate('/', {
+        replace: true,
+      });
     } catch (error) {
       console.error('🚀 ~ onSubmit ~ error:', error);
       toast({

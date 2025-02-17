@@ -39,6 +39,7 @@ export const ChatSocket = (io: Server) => {
       const receiverUser = UsersService.getOnlineUsers().find(
         (user: User) => user.id === receiver.id,
       );
+
       if (!receiverUser) {
         socket.emit('error', { event: 'message:send', message: 'Receiver not found' });
         return;
