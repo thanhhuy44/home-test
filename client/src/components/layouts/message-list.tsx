@@ -23,18 +23,21 @@ function MessageList() {
       }
     },
     refetchOnMount: true,
+    gcTime: 0,
   });
 
   useEffect(() => {
-    if (receiver) {
-      socket.on('message:receive', () => {
-        refetch();
-      });
-    }
+    socket.on('message:receive', () => {
+      receiver && refetch();
+    });
+
+    return () => {
+      socket.off('message:receive');
+    };
   }, [receiver]);
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-1 px-2 relative container px-4">
       {data ? data.map((message) => <MessageItem {...message} key={message.id} />) : null}
     </div>
   );

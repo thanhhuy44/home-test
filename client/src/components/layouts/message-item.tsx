@@ -10,7 +10,7 @@ function MessageItem({ message, sender }: Message) {
       <div
         className={cn(
           'w-fit max-w-[85%] rounded-md py-2 px-3 break-words',
-          isSender ? 'bg-secondary-foreground text-white' : 'border',
+          isSender ? 'bg-sky-600 text-white' : 'border',
         )}
       >
         {message}

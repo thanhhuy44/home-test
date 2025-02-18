@@ -7,11 +7,8 @@ type ChatStore = {
 };
 
 export const useChat = create<ChatStore>((set) => ({
-  receiver: localStorage.getItem('receiver')
-    ? JSON.parse(localStorage.getItem('receiver') as string)
-    : undefined,
+  receiver: undefined,
   setReceiver: (payload) => {
-    localStorage.setItem('receiver', JSON.stringify(payload));
     set({
       receiver: payload,
     });

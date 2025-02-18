@@ -9,19 +9,15 @@ type AuthStore = {
 };
 
 export const useAuth = create<AuthStore>((set) => ({
-  isLogin: JSON.parse(localStorage.getItem('isLogin') ?? 'false'),
-  user: JSON.parse(localStorage.getItem('user') ?? 'null'),
+  isLogin: false,
+  user: undefined,
   onLogin: (payload) => {
-    localStorage.setItem('isLogin', 'true');
-    localStorage.setItem('user', JSON.stringify(payload));
     set({
       isLogin: true,
       user: payload,
     });
   },
   onLogout: () => {
-    localStorage.removeItem('isLogin');
-    localStorage.removeItem('user');
     set({
       isLogin: false,
       user: undefined,

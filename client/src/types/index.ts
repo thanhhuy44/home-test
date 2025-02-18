@@ -1,7 +1,7 @@
 export type User = {
   id: string;
   username: string;
-  isOnline: boolean;
+  online: boolean;
 };
 
 export type Message = {

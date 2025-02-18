@@ -9,6 +9,7 @@ function MessageInput() {
   const { socket } = useSocket();
   const { receiver } = useChat();
   const [value, setValue] = useState('');
+  const [rows, setRows] = useState(1);
 
   const onSubmit = () => {
     if (value && value.trim()) {
@@ -22,25 +23,27 @@ function MessageInput() {
   }
 
   return (
-    <div className="flex items-start gap-3">
-      <Textarea
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        rows={4}
-        onKeyDown={(event) => {
-          if (event.key === 'Enter') {
-            event.preventDefault();
-            onSubmit();
-          }
-          if (event.shiftKey && event.key === 'Enter') {
-            event.preventDefault();
-            setValue((prev) => prev + '\n');
-          }
-        }}
-      />
-      <Button onClick={onSubmit} variant="outline">
-        <Send />
-      </Button>
+    <div className="container px-4 py-2">
+      <div className="flex items-start gap-3">
+        <Textarea
+          placeholder="Aa"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          rows={rows}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              onSubmit();
+            }
+            if (event.shiftKey && event.key === 'Enter') {
+              event.preventDefault();
+              setRows((prev) => (prev >= 5 ? prev : prev + 1));
+              setValue((prev) => prev + '\n');
+            }
+          }}
+        />
+        <Send className="size-6 text-sky-600" onClick={onSubmit} />
+      </div>
     </div>
   );
 }

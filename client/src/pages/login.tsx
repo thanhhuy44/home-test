@@ -1,5 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import {
   Form,
@@ -31,7 +38,7 @@ function Login() {
       onLogin({
         id: data.username,
         username: data.username,
-        isOnline: true,
+        online: true,
       });
       navigate('/', {
         replace: true,
@@ -51,7 +58,8 @@ function Login() {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <Card className="">
             <CardHeader>
-              <CardTitle>Welcome back!</CardTitle>
+              <CardTitle>Welcome to Chat App!</CardTitle>
+              <CardDescription>Login</CardDescription>
             </CardHeader>
             <CardContent>
               <FormField

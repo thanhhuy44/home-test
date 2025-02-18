@@ -59,6 +59,7 @@ export const ChatSocket = (io: Server) => {
     });
 
     socket.on('disconnect', () => {
+      console.log("🚀 ~ socket.on ~ disconnect!")
       const user: User = socket.data.user;
 
       if (user) {
