@@ -27,6 +27,7 @@ function MessageList() {
   });
 
   useEffect(() => {
+    refetch();
     socket.on('message:receive', () => {
       receiver && refetch();
     });
